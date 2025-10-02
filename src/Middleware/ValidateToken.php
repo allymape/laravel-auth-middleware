@@ -52,10 +52,10 @@ class ValidateToken
             }
             // Attach user to request
             $request->merge(['auth_user' => $user]);
-            Log::info('User token validated');
+            \Log::info('User token validated');
             return $next($request);
         } catch (\Exception $e) {
-            Log::error('Token validation error', [
+            \Log::error('Token validation error', [
                 'message' => $e->getMessage(),
                 'trace'   => $e->getTraceAsString()
             ]);

@@ -17,7 +17,7 @@ class CheckPermission
         $method = strtolower($method); // e.g. AuthController => authcontroller
         // Load permissions map from config
         $map = config('permissions');
-        $permission = $map[Str::replace('controller', '', $controller)][$method]['slug'] ?? null;
+        $permission = $map[\Str::replace('controller', '', $controller)][$method]['slug'] ?? null;
         if (
             !$user ||
             !isset($user['roles']) ||
