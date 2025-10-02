@@ -6,11 +6,18 @@ class ApiKeyMiddleware
 {
     public function handle($request, Closure $next)
     {
-        $apiKey = $request->header('X-API-KEY');
+        // Check for API key in the request header
+        $apiKey = $request->header('x-api-key');
 
-        if ($apiKey !== config('app.api_key')) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        // Get API key from config
+        $validApiKey = config('app.api_key');
+        if (!$apiKey || $apiKey !== $validApiKey) {
+            return response()->json([
+                'message' => 'Unauthorized. Invalid API key',
+                'status' => 'error'
+            ], 401);
         }
+
         return $next($request);
     }
 }
