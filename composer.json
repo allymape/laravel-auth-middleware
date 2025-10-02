@@ -1,8 +1,10 @@
 {
   "name": "mape/laravel-auth-middleware",
   "description": "JWT authentication and permission middleware for Laravel apps",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "library",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "license": "MIT",
   "autoload": {
     "psr-4": {
