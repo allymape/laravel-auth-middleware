@@ -3,6 +3,7 @@
   "description": "JWT authentication and permission middleware for Laravel apps",
   "version": "1.0",
   "type": "library",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Mape\\AuthMiddleware\\": "src/"
