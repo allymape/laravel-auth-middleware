@@ -1,0 +1,24 @@
+{
+  "name": "mape/laravel-auth-middleware",
+  "description": "JWT authentication and permission middleware for Laravel apps",
+  "version": "1.0",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Mape\\AuthMiddleware\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=8.0",
+    "tymon/jwt-auth": "^2.2"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Mape\\AuthMiddleware\\AuthMiddlewareServiceProvider"
+      ]
+    }
+  }
+}
+
+
