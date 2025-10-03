@@ -6,7 +6,7 @@ use Closure;
 
 class CheckPermission
 {
-    public function handle($request, Closure $next, $permission = null)
+    public function handle($request, Closure $next)
     {
         $user = $request->get('auth_user');
         // Get current controller and method
