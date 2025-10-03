@@ -14,7 +14,7 @@ class CheckPermission
         [$controller, $method] = explode('@', class_basename($action));
         // Normalize controller name (match your config keys)
         $controller = strtolower($controller); // e.g. AuthController => authcontroller
-        $method = strtolower($method); // e.g. AuthController => authcontroller
+        $method = $this->mapResourceMethod(strtolower($method)); // e.g. AuthController => authcontroller
         // Load permissions map from config
         $map = config('permissions');
         $permission = $map[\Str::replace('controller', '', $controller)][$method]['slug'] ?? null;
@@ -41,5 +41,20 @@ class CheckPermission
             ], 403);
         }
         return $next($request);
+    }
+    private function mapResourceMethod(string $method): ?string
+    {
+        static $map = [
+            'index'  => 'index',
+            'show'   => 'index',
+            'create' => 'create',
+            'store'  => 'create',
+            'edit'   => 'update',
+            'update' => 'update',
+            'destroy' => 'delete',
+            'restore' => 'delete',
+            'delete' => 'delete',
+        ];
+        return $map[$method] ?? null;
     }
 }
