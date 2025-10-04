@@ -46,15 +46,142 @@ class CheckPermission
     private function mapResourceMethod(string $method): ?string
     {
         static $map = [
-            'index'  => 'index',
-            'show'   => 'index',
-            'create' => 'create',
-            'store'  => 'create',
-            'edit'   => 'update',
-            'update' => 'update',
+            // ===== Standard Resource =====
+            'index'   => 'index',
+            'show'    => 'index',
+            'create'  => 'create',
+            'store'   => 'create',
+            'edit'    => 'update',
+            'update'  => 'update',
             'destroy' => 'delete',
+            'delete'  => 'delete',
             'restore' => 'delete',
-            'delete' => 'delete',
+            'permanentlyDeleteStaff' => 'delete',
+
+            // ===== Staff specific =====
+            'changePassword' => 'update',
+            'updatePersonalInfo' => 'update',
+            'activate' => 'update',
+            'deactivate' => 'update',
+
+            'getStaffInfo' => 'index',
+            'getStaffActiveSessions' => 'index',
+            'getLoginHistory' => 'index',
+            'getAllActivities' => 'index',
+            'getActiveSessions' => 'index',
+            'getTrashedStaff' => 'index',
+
+            'logout' => 'auth',
+            'refreshToken' => 'auth',
+            'logoutSpecificDevice' => 'auth',
+            'logoutAllDevices' => 'auth',
+
+            // ===== User specific =====
+            'changePassword' => 'update', // same as staff
+            'getAllActivities' => 'index',
+            'getUserActivities' => 'index',
+
+            // ===== Role & permission =====
+            'assignRole' => 'update',
+            'updateUserRolePermissions' => 'update',
+            'removeRole' => 'delete',
+            'getUserRolesWithPermissions' => 'index',
+            'getUserRolesWithPermissionsById' => 'index',
+            'roles' => 'index', // RoleController::index
+            'rolesWithPermissions' => 'index',
+            // ===== User auth =====
+            'refreshJwtToken' => 'auth',
+            // ===== Lookup Tables =====
+            'getEducationLevels'   => 'index',
+            'createEducationLevel' => 'create',
+            'updateEducationLevel' => 'update',
+            'deleteEducationLevel' => 'delete',
+
+            'getCountries'   => 'index',
+            'getCountry'     => 'index',
+            'createCountry'  => 'create',
+            'updateCountry'  => 'update',
+            'deleteCountry'  => 'delete',
+            'importCountries' => 'create',
+
+            // ===== NECTA Examination IDs =====
+            'indexNectaExaminationIds'  => 'index',   // index
+            'storeNectaExaminationId'   => 'create',  // store
+            'showNectaExaminationId'    => 'index',   // show
+            'updateNectaExaminationId'  => 'update',  // update
+            'destroyNectaExaminationId' => 'delete',  // destroy
+
+            // ===== Documentation =====
+            'getDocumentations' => 'index',
+            'showDocumentation' => 'index',
+            'storeDocumentation' => 'create',
+            'updateDocumentation' => 'update',
+            'destroyDocumentation' => 'delete',
+
+            // ===== Institutions / Departments / Designations (apiResource) =====
+            'institutionIndex'   => 'index',
+            'institutionStore'   => 'create',
+            'institutionShow'    => 'index',
+            'institutionUpdate'  => 'update',
+            'institutionDestroy' => 'delete',
+
+            'departmentIndex'   => 'index',
+            'departmentStore'   => 'create',
+            'departmentShow'    => 'index',
+            'departmentUpdate'  => 'update',
+            'departmentDestroy' => 'delete',
+
+            'designationIndex'   => 'index',
+            'designationStore'   => 'create',
+            'designationShow'    => 'index',
+            'designationUpdate'  => 'update',
+            'designationDestroy' => 'delete',
+
+            // ===== Administrative Areas =====
+            'getAreaTypes'          => 'index',
+            'ensureAreaTypesExist'  => 'create',
+
+            'getRegions'       => 'index',
+            'importRegions'    => 'create',
+            'getCouncils'      => 'index',
+            'getCouncilsByRegion' => 'index',
+            'importCouncils'   => 'create',
+            'getWards'         => 'index',
+            'getWardsByCouncil' => 'index',
+            'importWards'      => 'create',
+            'getVillages'      => 'index',
+            'getVillagesByWard' => 'index',
+            'importVillages'   => 'create',
+
+            'searchArea'            => 'index',
+            'getRegionByIdentifier' => 'index',
+            'getCouncilByIdentifier' => 'index',
+            'getWardByIdentifier'   => 'index',
+            'getVillageByIdentifier' => 'index',
+            'importAll'             => 'create',
+
+            // ===== Signatures =====
+            'storeSignature'  => 'create',
+            'showSignature'   => 'index',
+            'destroySignature' => 'delete',
+
+            // ===== Stamps =====
+            'getUserStampAndSignature' => 'index',
+            'indexStamps'    => 'index',
+            'storeStamp'     => 'create',
+            'showStamp'      => 'index',
+            'updateStamp'    => 'update',
+            'destroyStamp'   => 'delete',
+            // Nested UI Blocks (under Sidebars)
+            'indexNested'   => 'index',
+            'showNested'    => 'index',
+            'storeNested'   => 'create',
+            'updateNested'  => 'update',
+            'destroyNested' => 'delete',
+            // Services
+            'sendSms'                   => 'create',
+            'getSmsStatus'              => 'view',
+            'sendOTP'                   => 'create',
         ];
         return $map[$method] ?? null;
     }
