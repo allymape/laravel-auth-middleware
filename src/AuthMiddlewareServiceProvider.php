@@ -25,6 +25,11 @@ class AuthMiddlewareServiceProvider extends ServiceProvider
             __DIR__ . '/Config/permissions.php' => config_path('permissions.php'),
         ], 'config');
 
+        // Publish middleware
+        $this->publishes([
+            __DIR__ . '/Middleware/CheckPermission.php' => app_path('Http/Middleware/CheckPermission.php'),
+        ], 'middleware');
+
         // Register middleware aliases
         $this->app['router']->aliasMiddleware('api.key', ApiKeyMiddleware::class);
         $this->app['router']->aliasMiddleware('validate.token', ValidateToken::class);
