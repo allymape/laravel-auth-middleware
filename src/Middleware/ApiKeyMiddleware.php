@@ -8,16 +8,14 @@ class ApiKeyMiddleware
     {
         // Check for API key in the request header
         $apiKey = $request->header('x-api-key');
-
         // Get API key from config
         $validApiKey = config('app.api_key');
         if (!$apiKey || $apiKey !== $validApiKey) {
             return response()->json([
-                'message' => __('messages.api_key.un_authorized' ,  'Unauthorized. Invalid API key'),
+                'message' => 'Unauthorized. Invalid API key',
                 'status' => 'error'
             ], 401);
         }
-
         return $next($request);
     }
 }
