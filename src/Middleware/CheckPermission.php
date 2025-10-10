@@ -14,7 +14,7 @@ class CheckPermission
         [$controller, $method] = explode('@', class_basename($action));
         // Normalize controller name (match your config keys)
         $controller = strtolower($controller); // e.g. AuthController => authcontroller
-        $method = $this->mapResourceMethod(strtolower($method)); // e.g. AuthController => authcontroller
+        $method = $this->mapResourceMethod($method); // e.g. AuthController => authcontroller
         // Load permissions map from config
         $map = config('permissions');
         $module = \Str::replace('controller', '', $controller);
