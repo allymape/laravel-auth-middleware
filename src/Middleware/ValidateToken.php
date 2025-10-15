@@ -15,6 +15,7 @@ class ValidateToken
             $token = $request->bearerToken();
             if (!$token) {
                 return response()->json([
+                    'success' => false,
                     'status' => 'error',
                     'code'   => 401,
                     'message' => 'No token provided',
@@ -35,6 +36,7 @@ class ValidateToken
                 ];
             } catch (JWTException $e) {
                 return response()->json([
+                    'success' => false,
                     'status'  => 'error',
                     'code'    => 401,
                     'message' => 'Invalid or expired token',
@@ -44,6 +46,7 @@ class ValidateToken
 
             if (!$user || empty($user['id'])) {
                 return response()->json([
+                    'success' => false,
                     'status'  => 'error',
                     'code'    => 401,
                     'message' => 'User not found',
@@ -59,8 +62,8 @@ class ValidateToken
                 'message' => $e->getMessage(),
                 'trace'   => $e->getTraceAsString()
             ]);
-
             return response()->json([
+                'success' => false,
                 'status'  => 'error',
                 'code'    => 500,
                 'message' => 'Internal server error',
