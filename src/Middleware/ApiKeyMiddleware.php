@@ -13,7 +13,7 @@ class ApiKeyMiddleware
         if (!$apiKey || $apiKey !== $validApiKey) {
             return response()->json([
                 'success' => false,
-                'message' => 'Unauthorized. Invalid API key',
+                'message' => 'Unauthorized',
                 'status' => 'error'
             ], 401);
         }
